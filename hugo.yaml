@@ -1,4 +1,27 @@
-baseURL: https://example.org/
+baseURL: "https://vladfilen.github.io/blog2/"
 languageCode: en-us
-title: My New Hugo Site
-theme: ["PaperMod"]
+title: 🦌 Red Deer on the Shore Site
+theme: PaperMod
+frontmatter:
+  delimiter: "---"
+paginate : 10  # Number of items per page
+markup:
+  goldmark:
+    renderHooks:
+        image:
+          enableDefault: false
+        link:
+          enableDefault: false
+    renderer:
+      hardWraps: true
+      unsafe: true
+      xhtml: true
+ShowToc: true
+sectionPagesMenu: main
+params:
+  comments: true
+services:
+  disqus:
+    shortname: your-disqus-shortname
+
+

@@ -1,0 +1,46 @@
+{{ define "main" }}
+<div class="post-content">
+  {{ if .Content }}
+  <div class="content">{{ .Content }}</div>
+  {{ end }}
+
+  {{ $pages := .Pages }}
+  {{ if .IsHome }}
+    {{ $pages = .Site.RegularPages }}
+  {{ end }}
+
+  {{ range $pages }}
+  <article class="post-entry">
+    {{ if .Params.cover.image }}
+    <figure class="entry-cover">
+      <a href="{{ .Permalink }}">
+        <img src="{{ .Params.cover.image | absURL }}" alt="{{ .Params.cover.alt }}">
+      </a>
+    </figure>
+    {{ end }}
+
+    <header class="entry-header">
+      <h2>{{ .Title }}</h2>
+    </header>
+
+    <div class="entry-content">
+      <p>{{ .Summary }}</p>
+    </div>
+
+    <footer class="entry-footer">
+      <span class="post-taxonomy">
+        {{ range .Params.categories }}
+        <a href="{{ "categories/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a>
+        {{ end }}
+      </span>
+    </footer>
+
+    <a href="{{ .Permalink }}" class="entry-link"></a>
+  </article>
+  {{ end }}
+</div>
+
+<!-- Corrected the partial inclusion syntax -->
+{{ partial "pagination.html" . }}
+
+{{ end }}
